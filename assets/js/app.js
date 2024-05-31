@@ -2,13 +2,6 @@ const pokemonCount = 251;
 let pokedex = {};
 
 window.onload = async () => {
-
-    // remove dummy list
-    let listDiv = document.getElementById("pokemon-list");
-    while (listDiv.firstChild) {
-        listDiv.firstChild.remove();
-    };
-
     for (let i = 1; i <= pokemonCount; i++) {
         await getPokemon(i);
 
@@ -18,7 +11,7 @@ window.onload = async () => {
         pokemonElement.classList.add("pokemon-name");
         pokemonElement.addEventListener('click', () => refreshPokemon(i));
 
-        listDiv.append(pokemonElement);
+        document.getElementById("pokemon-list").append(pokemonElement);
     };
 
     // document.getElementById("pokemon-description").innerText = pokedex[1]["description"];
