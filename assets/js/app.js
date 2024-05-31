@@ -2,6 +2,13 @@ const pokemonCount = 251;
 let pokedex = {};
 
 window.onload = async () => {
+
+    // remove dummy list
+    let listDiv = document.getElementById("pokemon-list");
+    while (listDiv.firstChild) {
+        listDiv.firstChild.remove();
+    };
+
     for (let i = 1; i <= pokemonCount; i++) {
         await getPokemon(i);
 
@@ -10,10 +17,11 @@ window.onload = async () => {
         pokemonElement.innerText = i.toString() + ". " + pokedex[i]["name"].toUpperCase();
         pokemonElement.classList.add("pokemon-name");
         pokemonElement.addEventListener('click', () => refreshPokemon(i));
-        document.getElementById("pokemon-list").append(pokemonElement);
+
+        listDiv.append(pokemonElement);
     };
 
-    document.getElementById("pokemon-description").innerText = pokedex[1]["description"];
+    // document.getElementById("pokemon-description").innerText = pokedex[1]["description"];
 };
 
 const getPokemon = async (num) => {
@@ -50,6 +58,7 @@ const refreshPokemon = (id) => {
     document.getElementById("pokemon-img").src = pokedex[id]["img"];
     document.getElementById("pokemon-description").innerText = pokedex[id]["description"];
 
+    // remove dummy types
     let typesDiv = document.getElementById("pokemon-types");
     while (typesDiv.firstChild) {
         typesDiv.firstChild.remove();
